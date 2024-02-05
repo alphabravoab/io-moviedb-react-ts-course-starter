@@ -18,7 +18,7 @@ const Home: FunctionComponent = () => {
   const { data, isLoading } = useQuery({
     queryKey: [`search-${search}`],
     queryFn: async () => {
-      const cache = getFromCache(`getComments/${search}`);
+      const cache = getFromCache(`search-${search}`);
       if (cache) return cache;
 
       const data = await httpGet(`s=${search}`);
