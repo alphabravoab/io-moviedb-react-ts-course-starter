@@ -1,15 +1,22 @@
 import React, { FunctionComponent } from 'react';
-import Toggle from '../components/Toggle';
 import { useParams } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
+import Toggle from '../components/Toggle';
 import { httpGet } from "../util/httpClient";
 import Spinner from "../components/Spinner";
 
 const Detail: FunctionComponent = () => {
+  const queryClient = useQueryClient();
+  const getFromCache = (key: string) => {
+    return queryClient.getQueryData([key]);
+  };
   const { moviesId } = useParams();
   const { data, isLoading } = useQuery({
     queryKey: [moviesId],
     queryFn: async () => {
+      const cache = getFromCache(moviesId as string);
+      if (cache) return cache;
+
       const data = await httpGet(`i=${moviesId}`);
 
       return data.data;

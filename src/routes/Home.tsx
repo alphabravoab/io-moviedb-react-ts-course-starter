@@ -5,7 +5,7 @@ import MovieCard from "../components/MovieCard";
 import { selectSearch } from "../store/search";
 import { useAppSelector } from '../util/reduxHooks';
 import NoticeBlock from "../components/NoticeBlock";
-import {IMDBMovie} from "../model/movie";
+import { IMDBMovie } from "../model/movie";
 import Spinner from "../components/Spinner";
 
 const Home: FunctionComponent = () => {
