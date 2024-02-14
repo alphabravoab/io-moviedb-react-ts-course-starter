@@ -1,13 +1,13 @@
 import React, { ChangeEvent, FunctionComponent } from 'react';
+import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from '../util/reduxHooks';
 import { setSearch } from "../store/search";
-import { useNavigate } from "react-router-dom";
 
 
 const Search: FunctionComponent = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate()
-    const getInput = async(e: ChangeEvent<HTMLInputElement>) => {
+    const getInput = (e: ChangeEvent<HTMLInputElement>) => {
         const value  = e.target.value;
         dispatch(setSearch(value));
         navigate("/movies")
